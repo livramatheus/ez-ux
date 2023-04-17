@@ -56,26 +56,46 @@ function updateResult() {
         checkedRefinements.push(e.value);
     });
     
-    document.querySelector("#result").value = 
-        `UI design of a ${selectedDescription} ${selectedType}, ${checkedRefinements.join(", ")}, ${selectedPalette} color palette`;
+    let text = `UI design of a ${selectedDescription}`;
+    
+    if (selectedType) {
+        text += ` ${selectedType}`;
+    }
+    
+    if (checkedRefinements.length > 0) {
+        text += `, ${checkedRefinements.join(", ")}`;
+    }
+
+    if (selectedPalette) {
+        text += `, ${selectedPalette} color palette`;
+    }
+
+    text += `, High Resolution — ar 4:3 — v 5`;
+
+    document.querySelector("#result").value = text;
 }
 
 function createFields() {
-    createRefinementsFields();
-    createTypesFields();
-    createColorPalettesFields();
     createDescriptionField();
+    createTypesFields();
+    createRefinementsFields();
+    createColorPalettesFields();
 }
 
 function createDescriptionField() {
     const descriptionDiv = document.createElement("div");
     descriptionDiv.id = "description-wrapper";
 
+    const descriptionTitle = document.createElement("h3");
+    descriptionTitle.innerText = "Project description";
+
     const description = document.createElement("input");
     description.type = "text";
     description.id = "description";
+    description.placeholder = "Description";
     description.addEventListener("input", updateResult);
 
+    descriptionDiv.appendChild(descriptionTitle);
     descriptionDiv.appendChild(description);
 
     document.querySelector("#app").appendChild(descriptionDiv);
@@ -84,6 +104,11 @@ function createDescriptionField() {
 function createRefinementsFields() {
     const refinementsDiv = document.createElement("div");
     refinementsDiv.id = "refinements-wrapper";
+
+    const refinementsTitle = document.createElement("h3");
+    refinementsTitle.innerText = "Refinements";
+
+    const subDiv = document.createElement("div");
 
     refinements.forEach((r) => {
         const wrapper = document.createElement("div");
@@ -103,8 +128,11 @@ function createRefinementsFields() {
         wrapper.appendChild(label);
         wrapper.appendChild(checkBox);
 
-        refinementsDiv.appendChild(wrapper);
+        subDiv.appendChild(wrapper);
     });
+
+    refinementsDiv.appendChild(refinementsTitle);
+    refinementsDiv.appendChild(subDiv);
 
     document.querySelector("#app").appendChild(refinementsDiv);
 }
@@ -113,9 +141,19 @@ function createTypesFields() {
     const typesDiv = document.createElement("div");
     typesDiv.id = "types-wrapper";
 
+    const typesTitle = document.createElement("h3");
+    typesTitle.innerText = "Types";
+
     const typesSelect = document.createElement("select");
     typesSelect.id = "types"
     typesSelect.addEventListener("input", updateResult);
+
+    const defaultOption = document.createElement("option");
+    defaultOption.innerText = "None";
+    defaultOption.selected = true;
+    defaultOption.value = "";
+
+    typesSelect.appendChild(defaultOption);
 
     types.forEach((t) => {
         const typesOption = document.createElement("option");
@@ -125,6 +163,7 @@ function createTypesFields() {
         typesSelect.appendChild(typesOption);
     });
 
+    typesDiv.appendChild(typesTitle);
     typesDiv.appendChild(typesSelect);
 
     document.querySelector("#app").appendChild(typesDiv);
@@ -134,9 +173,19 @@ function createColorPalettesFields() {
     const colorPalettesDiv = document.createElement("div");
     colorPalettesDiv.id = "color-palettes-wrapper";
 
+    const colorPalettesTitle = document.createElement("h3");
+    colorPalettesTitle.innerText = "Color Palette";
+
     const colorPalettesSelect = document.createElement("select");
     colorPalettesSelect.id = "color-palettes"
     colorPalettesSelect.addEventListener("input", updateResult);
+
+    const defaultOption = document.createElement("option");
+    defaultOption.innerText = "None";
+    defaultOption.selected = true;
+    defaultOption.value = "";
+
+    colorPalettesSelect.appendChild(defaultOption);
 
     colorPalettes.forEach((c) => {
         const colorPalettesOption = document.createElement("option");
@@ -146,6 +195,7 @@ function createColorPalettesFields() {
         colorPalettesSelect.appendChild(colorPalettesOption);
     });
 
+    colorPalettesDiv.appendChild(colorPalettesTitle);
     colorPalettesDiv.appendChild(colorPalettesSelect);
 
     document.querySelector("#app").appendChild(colorPalettesDiv);
