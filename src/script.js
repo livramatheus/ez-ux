@@ -45,16 +45,13 @@ const colorPalettes = [
     "Trending UI color on Dribble"
 ];
 
+let customRefinementsField;
+
 function updateResult() {
     const selectedType = document.querySelector("#types").value;
     const selectedPalette = document.querySelector("#color-palettes").value;
     const selectedDescription = document.querySelector("#description").value;
-
-    const checkedRefinements = [];
-
-    document.querySelectorAll(".refinement:checked").forEach((e) => {
-        checkedRefinements.push(e.value);
-    });
+    const selectedRefinements = customRefinementsField.getResult();
     
     let text = `UI design of a ${selectedDescription}`;
     
@@ -62,8 +59,8 @@ function updateResult() {
         text += ` ${selectedType}`;
     }
     
-    if (checkedRefinements.length > 0) {
-        text += `, ${checkedRefinements.join(", ")}`;
+    if (selectedRefinements.length > 0) {
+        text += `, ${selectedRefinements.join(", ")}`;
     }
 
     if (selectedPalette) {
@@ -108,33 +105,39 @@ function createRefinementsFields() {
     const refinementsTitle = document.createElement("h3");
     refinementsTitle.innerText = "Refinements";
 
-    const subDiv = document.createElement("div");
+    const refinementsSelect = document.createElement("select");
+    refinementsSelect.id = "refinements"
+    refinementsSelect.multiple = true;
+    refinementsSelect.addEventListener("change", updateResult);
+
+    const defaultOption = document.createElement("option");
+    defaultOption.innerText = "None";
+    defaultOption.value = "";
+
+    refinementsSelect.appendChild(defaultOption);
 
     refinements.forEach((r) => {
-        const wrapper = document.createElement("div");
-        const label = document.createElement("label");
-        const checkBox = document.createElement("input");
+        const refinementsOption = document.createElement("option");
+        refinementsOption.innerText = r;
+        refinementsOption.value = r;
 
-        label.setAttribute("for", r.toLocaleLowerCase());
-        label.innerText = r;
-
-        checkBox.type = "checkbox";
-        checkBox.classList.add("refinement");
-        checkBox.name = "refinement[]";
-        checkBox.id = r.toLocaleLowerCase();
-        checkBox.value = r;
-        checkBox.addEventListener("input", updateResult);
-
-        wrapper.appendChild(label);
-        wrapper.appendChild(checkBox);
-
-        subDiv.appendChild(wrapper);
+        refinementsSelect.appendChild(refinementsOption);
     });
 
     refinementsDiv.appendChild(refinementsTitle);
-    refinementsDiv.appendChild(subDiv);
+    refinementsDiv.appendChild(refinementsSelect);
 
     document.querySelector("#app").appendChild(refinementsDiv);
+
+    customRefinementsField = new vanillaSelectBox("#refinements", {
+        maxHeight: 300,
+        search: true,
+        placeHolder: "Refinement",
+        disableSelectAll: true,
+        minWidth: -1
+    });
+
+    customRefinementsField.multipleSize = 3;
 }
 
 function createTypesFields() {
