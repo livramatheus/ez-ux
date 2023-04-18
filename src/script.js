@@ -46,28 +46,39 @@ const colorPalettes = [
 ];
 
 let customRefinementsField;
+let customTypesField;
+let customColorPalettesField;
 
 function updateResult() {
-    const selectedType = document.querySelector("#types").value;
-    const selectedPalette = document.querySelector("#color-palettes").value;
     const selectedDescription = document.querySelector("#description").value;
+    const selectedType = customTypesField.getResult()[0];
+    const selectedPalette = customColorPalettesField.getResult()[0];
     const selectedRefinements = customRefinementsField.getResult();
-    
-    let text = `UI design of a ${selectedDescription}`;
-    
-    if (selectedType) {
-        text += ` ${selectedType}`;
-    }
-    
-    if (selectedRefinements.length > 0) {
-        text += `, ${selectedRefinements.join(", ")}`;
-    }
 
-    if (selectedPalette) {
-        text += `, ${selectedPalette} color palette`;
-    }
+    let text = "Please fill all fields";
 
-    text += `, High Resolution — ar 4:3 — v 5`;
+    if (
+        selectedDescription.trim() &&
+        selectedType &&
+        selectedPalette &&
+        selectedRefinements.length > 0
+    ) {
+        text = `UI design of a ${selectedDescription}`;
+    
+        if (selectedType) {
+            text += ` ${selectedType}`;
+        }
+        
+        if (selectedRefinements.length > 0) {
+            text += `, ${selectedRefinements.join(", ")}`;
+        }
+    
+        if (selectedPalette) {
+            text += `, ${selectedPalette} color palette`;
+        }
+    
+        text += `, High Resolution — ar 4:3 — v 5`;
+    }
 
     document.querySelector("#result").value = text;
 }
@@ -84,7 +95,7 @@ function createDescriptionField() {
     descriptionDiv.id = "description-wrapper";
 
     const descriptionTitle = document.createElement("h3");
-    descriptionTitle.innerText = "Project description";
+    descriptionTitle.innerText = "Project Description";
 
     const description = document.createElement("input");
     description.type = "text";
@@ -109,12 +120,6 @@ function createRefinementsFields() {
     refinementsSelect.id = "refinements"
     refinementsSelect.multiple = true;
     refinementsSelect.addEventListener("change", updateResult);
-
-    const defaultOption = document.createElement("option");
-    defaultOption.innerText = "None";
-    defaultOption.value = "";
-
-    refinementsSelect.appendChild(defaultOption);
 
     refinements.forEach((r) => {
         const refinementsOption = document.createElement("option");
@@ -149,11 +154,10 @@ function createTypesFields() {
 
     const typesSelect = document.createElement("select");
     typesSelect.id = "types"
-    typesSelect.addEventListener("input", updateResult);
+    typesSelect.addEventListener("change", updateResult);
 
     const defaultOption = document.createElement("option");
     defaultOption.innerText = "None";
-    defaultOption.selected = true;
     defaultOption.value = "";
 
     typesSelect.appendChild(defaultOption);
@@ -170,6 +174,14 @@ function createTypesFields() {
     typesDiv.appendChild(typesSelect);
 
     document.querySelector("#app").appendChild(typesDiv);
+
+    customTypesField = new vanillaSelectBox("#types", {
+        maxHeight: 300,
+        search: true,
+        placeHolder: "Types",
+        disableSelectAll: true,
+        minWidth: -1
+    });
 }
 
 function createColorPalettesFields() {
@@ -181,11 +193,10 @@ function createColorPalettesFields() {
 
     const colorPalettesSelect = document.createElement("select");
     colorPalettesSelect.id = "color-palettes"
-    colorPalettesSelect.addEventListener("input", updateResult);
+    colorPalettesSelect.addEventListener("change", updateResult);
 
     const defaultOption = document.createElement("option");
     defaultOption.innerText = "None";
-    defaultOption.selected = true;
     defaultOption.value = "";
 
     colorPalettesSelect.appendChild(defaultOption);
@@ -202,6 +213,14 @@ function createColorPalettesFields() {
     colorPalettesDiv.appendChild(colorPalettesSelect);
 
     document.querySelector("#app").appendChild(colorPalettesDiv);
+
+    customColorPalettesField = new vanillaSelectBox("#color-palettes", {
+        maxHeight: 300,
+        search: true,
+        placeHolder: "Color Palette",
+        disableSelectAll: true,
+        minWidth: -1
+    });
 }
 
 window.addEventListener("load", () => {

@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 }
 
 body {
@@ -30,6 +33,7 @@ body {
     justify-content: center;
     align-items: center;
     flex: 1;
+    gap: 0.6rem;
 }
 
 #app > div > h3 {
@@ -48,7 +52,11 @@ body {
     width: 80%;
 }
 
-#description, #types, #btn-group-refinements, #color-palettes {
+#description, #btn-group-types, #btn-group-refinements, #btn-group-color-palettes {
     height: 2rem;
     width: 100%;
+}
+
+#description {
+    padding-left: 0.6rem;
 }
