@@ -42,7 +42,22 @@ const colorPalettes = [
     "Watercolor",
     "Dreamy summer",
     "Trending UI color on Behance",
-    "Trending UI color on Dribble"
+    "Trending UI color on Dribble",
+    "Navy and Gold",
+    "Burgundy and Blush",
+    "Forest Green and Rust",
+    "Maroon and Mustard",
+    "Royal Blue and Peach",
+    "Eggplant and Sage",
+    "Chocolate Brown and Tangerine",
+    "Charcoal Grey and Coral",
+    "Burnt Orange and Dusty Rose",
+    "Olive Green and Terracotta",
+    "Plum and Sage",
+    "Teal and Burnt Sienna",
+    "Slate Blue and Apricot",
+    "Dark Green and Brick Red",
+    "Rust and Turquoise Blue"
 ];
 
 let customRefinementsField;
