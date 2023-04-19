@@ -172,12 +172,6 @@ function createTypesFields() {
     typesSelect.id = "types"
     typesSelect.addEventListener("change", updateResult);
 
-    const defaultOption = document.createElement("option");
-    defaultOption.innerText = "None";
-    defaultOption.value = "";
-
-    typesSelect.appendChild(defaultOption);
-
     types.forEach((t) => {
         const typesOption = document.createElement("option");
         typesOption.innerText = t;
@@ -210,12 +204,6 @@ function createColorPalettesFields() {
     const colorPalettesSelect = document.createElement("select");
     colorPalettesSelect.id = "color-palettes"
     colorPalettesSelect.addEventListener("change", updateResult);
-
-    const defaultOption = document.createElement("option");
-    defaultOption.innerText = "None";
-    defaultOption.value = "";
-
-    colorPalettesSelect.appendChild(defaultOption);
 
     colorPalettes.forEach((c) => {
         const colorPalettesOption = document.createElement("option");
