@@ -101,6 +101,7 @@ function createDescriptionField() {
     description.type = "text";
     description.id = "description";
     description.placeholder = "Description";
+    description.autocomplete = "off";
     description.addEventListener("input", updateResult);
 
     descriptionDiv.appendChild(descriptionTitle);
