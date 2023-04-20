@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: lightskyblue;
+    background-color: #EEEEEE;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,10 +60,25 @@ body {
 }
 
 #description, #btn-group-types, #btn-group-refinements, #btn-group-color-palettes {
-    height: 2rem;
     width: 100%;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.05);
+    border: none;
+    height: 3.2rem;
+    border-radius: 5px !important;
+}
+
+#description,
+#btn-group-types > button,
+#btn-group-refinements > button,
+#btn-group-color-palettes > button {
+    border: none;
+    height: 3.2rem;
+    border: none !important;
+    border-radius: 5px !important;
+    font-size: 1.1rem !important;
 }
 
 #description {
     padding-left: 0.6rem;
+    outline: none;
 }
