@@ -98,7 +98,7 @@ function updateResult() {
     document.querySelector("#result").value = text;
 }
 
-function createFields() {
+function manageFields() {
     createDescriptionField();
     createTypesFields();
     createRefinementsFields();
@@ -110,7 +110,7 @@ function createDescriptionField() {
     descriptionDiv.id = "description-wrapper";
 
     const descriptionTitle = document.createElement("h3");
-    descriptionTitle.innerText = "Project Description";
+    descriptionTitle.innerText = "📝 Project Description";
 
     const description = document.createElement("input");
     description.type = "text";
@@ -130,7 +130,7 @@ function createRefinementsFields() {
     refinementsDiv.id = "refinements-wrapper";
 
     const refinementsTitle = document.createElement("h3");
-    refinementsTitle.innerText = "Refinements";
+    refinementsTitle.innerText = "🔧 Refinements";
 
     const refinementsSelect = document.createElement("select");
     refinementsSelect.id = "refinements"
@@ -166,7 +166,7 @@ function createTypesFields() {
     typesDiv.id = "types-wrapper";
 
     const typesTitle = document.createElement("h3");
-    typesTitle.innerText = "Types";
+    typesTitle.innerText = "📋 Types";
 
     const typesSelect = document.createElement("select");
     typesSelect.id = "types"
@@ -199,7 +199,7 @@ function createColorPalettesFields() {
     colorPalettesDiv.id = "color-palettes-wrapper";
 
     const colorPalettesTitle = document.createElement("h3");
-    colorPalettesTitle.innerText = "Color Palette";
+    colorPalettesTitle.innerText = "🎨 Color Palette";
 
     const colorPalettesSelect = document.createElement("select");
     colorPalettesSelect.id = "color-palettes"
@@ -227,6 +227,25 @@ function createColorPalettesFields() {
     });
 }
 
+function copyToClipBoard() {
+    const result = document.querySelector("#result");
+  
+    result.select();
+    result.setSelectionRange(0, 99999);
+  
+    navigator.clipboard.writeText(result.value);
+    Toastify({
+        text: "Input copied to clipboard!",
+        gravity: "bottom",
+        position: "center",
+        style: {
+            backgroundImage: `radial-gradient(circle farthest-corner at 10% 20%,
+                rgba(14,174,87,1) 0%, rgba(12,116,117,1) 90%)`,
+        }
+    }).showToast();
+}
+
 window.addEventListener("load", () => {
-    createFields();
+    manageFields();
+    document.querySelector("#copy").addEventListener("click", copyToClipBoard);
 });
