@@ -133,3 +133,55 @@ body {
     padding-left: 0.6rem;
     outline: none;
 }
+
+@media only screen and (max-width: 600px) {
+    body {
+        justify-content: flex-start;
+    }
+
+    #content-wrapper {
+        gap: 2.4rem;
+    }
+
+    #app {
+        flex-direction: column;
+        gap: 1.6rem;
+        padding: 0 1.6rem;
+    }
+
+    #app > div {
+        gap: 0.4;
+    }
+
+    #app h3 {
+        color: #4e4e4e;
+        font-size: 1rem;
+    }
+
+    #logo {
+        gap: 0.8rem;
+    }
+
+    #result-wrapper {
+        padding: 0 1.6rem;
+    }
+
+    #result {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    #description,
+    #btn-group-types,
+    #btn-group-refinements,
+    #btn-group-color-palettes {
+        height: 2.4rem;
+    }
+    
+    #description,
+    #btn-group-types > button,
+    #btn-group-refinements > button,
+    #btn-group-color-palettes > button {
+        height: 2.4rem;
+    }
+}

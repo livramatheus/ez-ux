@@ -151,7 +151,7 @@ function createRefinementsFields() {
     document.querySelector("#app").appendChild(refinementsDiv);
 
     customRefinementsField = new vanillaSelectBox("#refinements", {
-        maxHeight: 300,
+        maxHeight: 200,
         search: true,
         placeHolder: "Refinement",
         disableSelectAll: true,
@@ -186,7 +186,7 @@ function createTypesFields() {
     document.querySelector("#app").appendChild(typesDiv);
 
     customTypesField = new vanillaSelectBox("#types", {
-        maxHeight: 300,
+        maxHeight: 200,
         search: true,
         placeHolder: "Types",
         disableSelectAll: true,
@@ -219,7 +219,7 @@ function createColorPalettesFields() {
     document.querySelector("#app").appendChild(colorPalettesDiv);
 
     customColorPalettesField = new vanillaSelectBox("#color-palettes", {
-        maxHeight: 300,
+        maxHeight: 200,
         search: true,
         placeHolder: "Color Palette",
         disableSelectAll: true,
