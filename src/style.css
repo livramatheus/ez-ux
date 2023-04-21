@@ -134,6 +134,17 @@ body {
     outline: none;
 }
 
+footer {
+    color: #4e4e4e;
+    font-size: 0.8rem;
+    padding: 0.8rem;
+    text-align: center;
+}
+
+footer a {
+    color: green;
+}
+
 @media only screen and (max-width: 600px) {
     body {
         justify-content: flex-start;
