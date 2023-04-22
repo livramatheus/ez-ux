@@ -92,7 +92,7 @@ function updateResult() {
             text += `, ${selectedPalette} color palette`;
         }
     
-        text += `, High Resolution — ar 4:3 — v 5`;
+        text += `, High Resolution --ar 4:3`;
     }
 
     document.querySelector("#result").value = text;
