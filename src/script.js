@@ -24,7 +24,6 @@ const refinements = [
     "Cartoonish",
     "Mysterious",
     "Sci-fi",
-    "Futuristic",
     "High-tech",
     "Futuristic",
     "AI Utopia Advancement",
