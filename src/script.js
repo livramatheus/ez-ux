@@ -69,20 +69,11 @@ function updateResult() {
     const selectedPalette = customColorPalettesField.getResult()[0];
     const selectedRefinements = customRefinementsField.getResult();
 
-    let text = "Please fill all fields";
+    let text = "Please, fill at least \"Description\" and \"Type\" fields";
 
-    if (
-        selectedDescription.trim() &&
-        selectedType &&
-        selectedPalette &&
-        selectedRefinements.length > 0
-    ) {
-        text = `UI design of a ${selectedDescription}`;
+    if (selectedDescription.trim() && selectedType) {
+        text = `UI design of a ${selectedDescription} ${selectedType}`;
     
-        if (selectedType) {
-            text += ` ${selectedType}`;
-        }
-        
         if (selectedRefinements.length > 0) {
             text += `, ${selectedRefinements.join(", ")}`;
         }
@@ -171,6 +162,12 @@ function createTypesFields() {
     typesSelect.id = "types"
     typesSelect.addEventListener("change", updateResult);
 
+    const defaultOption = document.createElement("option");
+    defaultOption.innerText = "";
+    defaultOption.value = "";
+
+    typesSelect.appendChild(defaultOption);
+
     types.forEach((t) => {
         const typesOption = document.createElement("option");
         typesOption.innerText = t;
@@ -203,6 +200,12 @@ function createColorPalettesFields() {
     const colorPalettesSelect = document.createElement("select");
     colorPalettesSelect.id = "color-palettes"
     colorPalettesSelect.addEventListener("change", updateResult);
+
+    const defaultOption = document.createElement("option");
+    defaultOption.innerText = "";
+    defaultOption.value = "";
+
+    colorPalettesSelect.appendChild(defaultOption);
 
     colorPalettes.forEach((c) => {
         const colorPalettesOption = document.createElement("option");
