@@ -62,9 +62,10 @@ const colorPalettes = [
 let customRefinementsField;
 let customTypesField;
 let customColorPalettesField;
+let description;
 
 function updateResult() {
-    const selectedDescription = document.querySelector("#description").value;
+    const selectedDescription = description.value;
     const selectedType = customTypesField.getResult()[0];
     const selectedPalette = customColorPalettesField.getResult()[0];
     const selectedRefinements = customRefinementsField.getResult();
@@ -102,7 +103,7 @@ function createDescriptionField() {
     const descriptionTitle = document.createElement("h3");
     descriptionTitle.innerText = "📝 Project Description";
 
-    const description = document.createElement("input");
+    description = document.createElement("input");
     description.type = "text";
     description.id = "description";
     description.placeholder = "Description";
@@ -247,7 +248,15 @@ function copyToClipBoard() {
     }).showToast();
 }
 
+function clearFields() {
+    customRefinementsField.empty();
+    customTypesField.empty();
+    customColorPalettesField.empty();
+    description.value = "";
+}
+
 window.addEventListener("load", () => {
     manageFields();
     document.querySelector("#copy").addEventListener("click", copyToClipBoard);
+    document.querySelector("#clear").addEventListener("click", clearFields);
 });

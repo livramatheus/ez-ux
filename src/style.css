@@ -75,12 +75,15 @@ body {
     gap: 0.8rem;
 }
 
+#result-wrapper div {
+    display: flex;
+    gap: 1rem;
+}
+
 #result-wrapper button {
     width: 7rem;
     height: 2.4rem;
-    background-color: #dd2626;
     font-weight: bold;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -89,11 +92,29 @@ body {
     font-size: 1.05rem;
 }
 
-#result-wrapper button:hover {
+#clear {
+    background-color: #45718f;
+    color: white;
+}
+
+#clear:hover {
+    background-color: #5f8ead;
+}
+
+#clear:active {
+    background-color: #3b6480;
+}
+
+#copy {
+    background-color: #dd2626;
+    color: white;
+}
+
+#copy:hover {
     background-color: #e64e4e;
 }
 
-#result-wrapper button:active {
+#copy:active {
     background-color: #d61f1f;
 }
 
